@@ -6,13 +6,17 @@
         As you can see, you are currently logged to your account.<br>
         All request made with <code>src/api/sdk.js</code> will automatically attach your authentication token.
       </p>
+
+      <cards-example></cards-example>
     </div>
   </div>
 </template>
 
 <script>
+import CardsExample from "./assembe/examples/Cards";
 export default {
   name: 'Dashboard',
+  components: {CardsExample},
   computed: {
     user() {
       return this.$store.getters.user;

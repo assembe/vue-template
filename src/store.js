@@ -3,10 +3,19 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+function getUser() {
+  try {
+    return JSON.parse(window.localStorage.getItem('user'));
+  }catch (e) {
+    window.localStorage.removeItem('user');
+    return null
+  }
+}
+
 const store = new Vuex.Store({
   state: {
     userToken: window.localStorage.getItem('token'),
-    user: window.localStorage.getItem('user')
+    user: getUser()
   },
   getters: {
     isLogged: state => {
@@ -38,7 +47,7 @@ const store = new Vuex.Store({
       commit('setUserToken', data.token)
       commit('setUser', data.user)
       window.localStorage.setItem('token', data.token)
-      window.localStorage.setItem('user', data.user)
+      window.localStorage.setItem('user', JSON.stringify(data.user))
     },
     logout({commit}) {
       commit('removeUserToken')

@@ -5,7 +5,7 @@ import store from "../store";
 function getHeaders() {
   if (store.getters.isLogged) {
     return {
-      Authorisation: 'Bearer '+store.getters.token
+      'Authorization': 'Bearer '+store.getters.token
     }
   }
 
